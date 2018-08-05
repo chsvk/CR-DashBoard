@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+</head>
+<body>
+    Property Heading:<input id="heading" type="text"><br>
+    Property Location:<input id="location" type="text"><br>
+    Property Price:<input id="price" type="text"><br>
+    Negotiable? : <input id="neg" type="text"><br>
+    Rate (per sq.feet) : <input id="rate" type="text"><br>
+    Developments : <textarea name="" id="developments" cols="30" rows="10"></textarea><br>
+    Scope for Hike: <input id="hike" type="text"> <br>
+    Note: <input id="note" type="text"> <br>
+    Upload Images: 
+    <progress value="0" max="100" id="uploader">0%</progress>
+    <input type="file" value="upload" id="fileButton"><br>
+    <button onclick="submitPost()" id="submit">Submit</button>
+    <script src="index.js"></script>
+</body>
+</html>
