@@ -10,35 +10,56 @@ var config = {
 
 
   document.getElementById("fileButton").multiple = true;
-  var uploader = document.getElementById("uploader");
+  document.getElementById("developmentImages").multiple = true;
+  var uploaderm = document.getElementById("uploaderm");
+  var uploaderd = document.getElementById('uploaderd');
   var fileButton = document.getElementById("fileButton");
+  var developmentImgs = document.getElementById("developmentImages");
   var db = firebase.firestore();
   var imageUrls = [];
+  var developmentUrls = [];
 
   fileButton.addEventListener('change', function(e){
       allComplete = false;
       for( var i=0; i<e.target.files.length; i++){
           var imagefile = e.target.files[i];
-          uploadImageToFirebase(imagefile, i , e.target.files.length);
+          var x = "Main";
+          uploadImageToFirebase(imagefile, i , e.target.files.length, x);
       }
   });
 
-  function uploadImageToFirebase(image, current, total){
+  developmentImgs.addEventListener('change', function(e){
+    allComplete = false;
+    for( var i=0; i<e.target.files.length; i++){
+        var imagefile = e.target.files[i];
+        var x = "development";
+        uploadImageToFirebase(imagefile, i , e.target.files.length, x);
+    }
+});
+
+  function uploadImageToFirebase(image, current, total, x){
       return new Promise(function(resolve, reject){
           var storageref = firebase.storage().ref('admin/' + image.name +  guid());
           var task = storageref.put(image);
           task.on('state_changed', 
             function progress(snapshot){
                 var percentage = snapshot.bytesTransferred/snapshot.totalBytes* 100;
-                uploader.value = percentage;
+                if(x == "development"){
+                    uploaderd.value = percentage;
+                }else{
+                    uploaderm.value = percentage;
+                }
             },
             function error(e){
 
             },
             function complete(){
                 task.snapshot.ref.getDownloadURL().then(function(url){
-                    console.log("Uploaded");
-                    imageUrls.push(url);
+                    if(x == "development"){
+                        developmentUrls.push(url);
+                    }
+                    if(x == "Main")
+                        imageUrls.push(url);
                     snack(current + 1 + " Images Uploaded out of " + total);
                 })
             }        
@@ -70,7 +91,8 @@ var config = {
         Length: document.getElementById('length').value,
         Breadth: document.getElementById('breadth').value,
         BusRoute: document.getElementById('busRoute').value,
-        Image: imageUrls
+        Image: imageUrls,
+        DevelopmentImages: developmentUrls
     })
     .then(function(docRef) {
         snack("Property Uploaded");
