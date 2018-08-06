@@ -73,6 +73,7 @@ var config = {
         Image: imageUrls
     })
     .then(function(docRef) {
+        snack("Property Uploaded");
         console.log("Document written with ID: ", docRef.id);
     })
     .catch(function(error) {
