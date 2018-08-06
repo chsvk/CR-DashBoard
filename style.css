@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100i,300,900i,900);
+
 #uploader{
     -webkit-appearance: none;
     appearance: none;
@@ -5,11 +7,127 @@
 }
 
 *{
+    font-family: "Roboto", sans-serif;
     /* padding: 1em; */
-    margin: 1em;
+    margin: 0.3em;
+    /* padding: 1em; */
+}
+
+.single{
+    display: grid;
+    grid-template-columns: 50% auto;
+}
+
+.single > h4{
+    font-style: italic;
 }
 
 input{
     width: 400px;
-    padding: 1em;
+    padding: 0.3em;
 }
+
+#dont{
+    visibility: hidden;
+}
+
+#show{
+    visibility: visible;
+}
+
+
+/* INPUT BUTTON CSS */
+
+.upload-btn-wrapper {
+
+    position: relative;
+  
+    overflow: hidden;
+  
+    display: inline-block;
+  
+  }
+  
+  
+  
+  .btn {
+  
+    border: 2px solid gray;
+  
+    color: gray;
+  
+    background-color: white;
+  
+    padding: 8px 20px;
+  
+    border-radius: 8px;
+  
+    font-size: 20px;
+  
+    font-weight: bold;
+  
+  }
+  
+  
+  
+  .upload-btn-wrapper input[type=file] {
+  
+    font-size: 100px;
+  
+    position: absolute;
+  
+    left: 0;
+  
+    top: 0;
+  
+    opacity: 0;
+  
+  }
+
+/*  SNACKBAR CSS */
+
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+} 

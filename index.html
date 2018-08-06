@@ -4,26 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
 </head>
 <body>
-    Property Heading:<input id="heading" type="text"><br>
-    Property Location:<input id="location" type="text"><br>
-    Property Price:<input id="price" type="text"><br>
-    Negotiable? : <input id="neg" type="text"><br>
-    Rate (per sq.feet) : <input id="rate" type="text"><br>
-    Developments : <textarea name="" id="developments" cols="30" rows="10"></textarea><br>
-    Scope for Hike: <input id="hike" type="text"> <br>
-    Note: <input id="note" type="text"> <br>
-    Upload Images: 
-    <progress value="0" max="100" id="uploader">0%</progress>
-    <input type="file" value="upload" id="fileButton"><br>
-    <button onclick="submitPost()" id="submit">Submit</button>
+    <div class="container">
+            <h2 style="text-align: center; font-style: italic; font-weight: bold">Admin Property Panel</h2><br><br>
+        <div class="single">
+             <h4>Property Heading</h4>
+             <input id="heading" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Property Location</h4>
+             <input id="location" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Property Price</h4>
+             <input id="price" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Negotiable?</h4>
+             <input id="neg" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Rate per Sq.Yard</h4>
+             <input id="rate" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Facing</h4>
+             <input id="facing" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Length</h4>
+             <input id="length" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Breadth</h4>
+             <input id="breadth" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Bus Route</h4>
+             <input id="busRoute" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Developments</h4>
+             <textarea name="" id="developments" cols="60" rows="10"></textarea>
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Scope for Hike</h4>
+             <input id="hike" type="text">
+        </div>
+        <hr>
+        <div class="single">
+             <h4>Note</h4>
+             <textarea name="" id="note" cols="60" rows="6"></textarea>
+        </div>
+        <hr>
+        <div class="UploadImages">
+            <h3 style="text-align: center">Upload Images</h3>
+            <div class="upload-btn-wrapper" >
+                <button class="btn">Upload Files</button>
+                <input id="fileButton" type="file" name="myfile" />
+            </div><br>
+            <progress value="0" max="100" id="uploader">0%</progress><br><br><br><br>
+            <button onclick="submitPost()" style="width: 100%; margin: 0 auto;" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <div id="snackbar">Some text some message..</div> 
     <script src="index.js"></script>
 </body>
 </html>

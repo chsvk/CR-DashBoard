@@ -8,31 +8,52 @@ var config = {
   };
   firebase.initializeApp(config);
 
-  var uploadedUrl;
+
+  document.getElementById("fileButton").multiple = true;
   var uploader = document.getElementById("uploader");
   var fileButton = document.getElementById("fileButton");
   var db = firebase.firestore();
+  var imageUrls = [];
 
   fileButton.addEventListener('change', function(e){
-    var file = e.target.files[0];
-    var storageref =  firebase.storage().ref('/admin/'+ file.name);
-    var task = storageref.put(file);
-    task.on('state_changed', 
-    function progress(snapshot){
-        var percentage = snapshot.bytesTransferred/snapshot.totalBytes* 100;
-        uploader.value = percentage;
-    },
-    function error(e){
-
-    },
-    function complete(){
-        task.snapshot.ref.getDownloadURL().then(function(url){
-            console.log("Uploaded");
-            uploadedUrl = url;
-        })
-    }        
-)
+      allComplete = false;
+      for( var i=0; i<e.target.files.length; i++){
+          var imagefile = e.target.files[i];
+          uploadImageToFirebase(imagefile, i , e.target.files.length);
+      }
   });
+
+  function uploadImageToFirebase(image, current, total){
+      return new Promise(function(resolve, reject){
+          var storageref = firebase.storage().ref('admin/' + image.name +  guid());
+          var task = storageref.put(image);
+          task.on('state_changed', 
+            function progress(snapshot){
+                var percentage = snapshot.bytesTransferred/snapshot.totalBytes* 100;
+                uploader.value = percentage;
+            },
+            function error(e){
+
+            },
+            function complete(){
+                task.snapshot.ref.getDownloadURL().then(function(url){
+                    console.log("Uploaded");
+                    imageUrls.push(url);
+                    snack(current + 1 + " Images Uploaded out of " + total);
+                })
+            }        
+        )
+      })
+  }
+
+  function guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  }
 
 
   function submitPost(){
@@ -45,7 +66,11 @@ var config = {
         Developments: document.getElementById('developments').value,
         Hike: document.getElementById('hike').value,
         Note: document.getElementById('note').value,
-        Image: uploadedUrl
+        Facing: document.getElementById('facing').value,
+        Length: document.getElementById('length').value,
+        Breadth: document.getElementById('breadth').value,
+        BusRoute: document.getElementById('busRoute').value,
+        Image: imageUrls
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -54,3 +79,18 @@ var config = {
         console.error("Error adding document: ", error);
     });
   }
+
+
+
+//   SNACKBAR FUNCTION
+
+function snack(message) {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+    x.innerHTML = message;
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+} 
