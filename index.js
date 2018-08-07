@@ -85,6 +85,7 @@ var config = {
         Negotioable: document.getElementById('neg').value,
         Rate: document.getElementById('rate').value,
         Developments: document.getElementById('developments').value,
+        Emmenities: document.getElementById('emmenities').value,
         Hike: document.getElementById('hike').value,
         Note: document.getElementById('note').value,
         Facing: document.getElementById('facing').value,
