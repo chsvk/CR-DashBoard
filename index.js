@@ -92,7 +92,7 @@ var config = {
         Length: document.getElementById('length').value,
         Breadth: document.getElementById('breadth').value,
         BusRoute: document.getElementById('busRoute').value,
-        Image: imageUrls,
+        DisplayImages: imageUrls,
         DevelopmentImages: developmentUrls
     })
     .then(function(docRef) {
