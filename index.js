@@ -78,7 +78,15 @@ var config = {
 
 
   function submitPost(){
-    db.collection("Posts").add({
+    var temp = 'https://firebasestorage.googleapis.com/v0/b/chattirealtors-4ca32.appspot.com/o/Users%2Fd3L1Uc8zYGcciFtI3fLrB5p4h983%2FnoImage.png14cfff43-f531-d085-7bf4-e4489ae752c5?alt=media&token=05a45903-23a9-4d3f-b74b-d68b24ab947f';
+
+      if(imageUrls==""){
+          imageUrls.push(temp);
+      }
+      if(developmentUrls==""){
+          developmentUrls.push(temp);
+      }
+    db.collection("AdminPosts").add({
         Heading: document.getElementById('heading').value,
         Location: document.getElementById('location').value,
         Price: document.getElementById('price').value,
